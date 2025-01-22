@@ -98,6 +98,9 @@ vim.o.softtabstop = 4
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- vim.opt.background = 'dark'
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -576,7 +579,9 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
+        cssls = {},
+        tailwindcss = {},
         -- rust_analyzer = {},
         jdtls = {},
         -- java_language_server = {},
@@ -586,7 +591,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -805,6 +810,13 @@ require('lazy').setup({
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
+    opts = {
+      transparent = true,
+      style = {
+        sizebars = 'transparent',
+        floats = 'transparent',
+      },
+    },
   },
 
   -- Highlight todo, notes, etc in comments
@@ -911,7 +923,7 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
   require 'kickstart.plugins.toggleterm',
-
+  require 'custom.plugins.init',
   -- For C files
   vim.api.nvim_set_keymap('n', '<leader>rc', ':w<CR>:TermExec cmd="gcc % -o %< && ./%<"<CR>', { noremap = true, silent = true }),
 
