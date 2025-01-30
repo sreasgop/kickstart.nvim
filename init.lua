@@ -591,6 +591,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
+        -- tsserver is no more called such, it's now called ts_ls
         ts_ls = {},
         --
 
